@@ -12,9 +12,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Unsplash images - elegant South Asian wedding/couple imagery
 const HERO_IMAGE = "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1920&q=80";
-const TESTIMONIAL_1 = "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80";
-const TESTIMONIAL_2 = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80";
-const TESTIMONIAL_3 = "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80";
 const CTA_BG = "https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=80";
 
 const stats = [
@@ -29,23 +26,7 @@ const steps = [
   { icon: Shield, title: "Meet Safely", desc: "Verified connections" },
 ];
 
-const testimonials = [
-  {
-    name: "Priya & Arjun",
-    quote: "They understood exactly what we were looking for. Three months later, we were engaged.",
-    image: TESTIMONIAL_1,
-  },
-  {
-    name: "Fatima & Hassan",
-    quote: "No awkward first messages. Just a beautiful, facilitated introduction that felt right.",
-    image: TESTIMONIAL_2,
-  },
-  {
-    name: "Meera & Vikram",
-    quote: "The personal touch made all the difference. This isn't a dating app — it's matchmaking done right.",
-    image: TESTIMONIAL_3,
-  },
-];
+// testimonials removed
 
 function Counter({ value, suffix }: { value: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -80,7 +61,7 @@ export default function HomePage() {
   const heroRef = useRef<HTMLDivElement>(null);
   const heroTextRef = useRef<HTMLDivElement>(null);
   const stepsRef = useRef<HTMLDivElement>(null);
-  const testimonialsRef = useRef<HTMLDivElement>(null);
+  // testimonialsRef removed
   const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -115,19 +96,6 @@ export default function HomePage() {
         ease: "power3.out",
         scrollTrigger: {
           trigger: stepsRef.current,
-          start: "top 75%",
-        },
-      });
-
-      // Testimonials slide in
-      gsap.from(".testimonial-card", {
-        x: (i) => (i % 2 === 0 ? -100 : 100),
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: testimonialsRef.current,
           start: "top 75%",
         },
       });
@@ -231,40 +199,6 @@ export default function HomePage() {
                   <Counter value={stat.value} suffix={stat.suffix} />
                 </div>
                 <p className="text-white/60 text-sm md:text-base">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section ref={testimonialsRef} className="py-24 md:py-32 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="text-[#C9956B] font-medium tracking-[0.2em] uppercase text-sm mb-4">Love Stories</p>
-            <h2 className="font-serif text-3xl md:text-5xl font-bold text-[#2D1318]">Happy Couples</h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((t, i) => (
-              <div
-                key={i}
-                className="testimonial-card bg-[#FFF8F0] rounded-2xl p-8 border border-[#C9956B]/20 hover:shadow-xl transition-shadow duration-300"
-              >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="relative w-14 h-14 rounded-full overflow-hidden">
-                    <Image src={t.image} alt={t.name} fill className="object-cover" />
-                  </div>
-                  <div>
-                    <p className="font-serif font-semibold text-[#2D1318]">{t.name}</p>
-                    <div className="flex gap-1">
-                      {[...Array(5)].map((_, j) => (
-                        <Heart key={j} className="w-3 h-3 fill-[#C9956B] text-[#C9956B]" />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <p className="text-[#2D1318]/80 italic leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
               </div>
             ))}
           </div>
