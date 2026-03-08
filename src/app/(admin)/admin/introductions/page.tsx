@@ -55,7 +55,7 @@ export default function IntroductionsPage() {
   );
 
   return (
-    <div className="p-8">
+    <div className="space-y-8">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
         <div>
@@ -70,7 +70,7 @@ export default function IntroductionsPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 mb-8">
         <div className="bg-white rounded-xl p-4 shadow-sm border border-[#F5E0E8]/50">
           <div className="flex items-center gap-2 text-[#6B5B5E] mb-1">
             <Send className="w-4 h-4" />
@@ -149,7 +149,7 @@ export default function IntroductionsPage() {
         </TabsList>
 
         <TabsContent value="create">
-          <div className="grid lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <IntroductionForm
               matches={[...availableMatches, ...mockMatches.filter((m) => m.status === 'approved' || m.status === 'mutual')]}
               onSend={handleSendIntroduction}

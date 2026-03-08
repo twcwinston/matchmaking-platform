@@ -150,11 +150,13 @@ export function StepPhotos({ defaultValues, onNext, onBack }: StepPhotosProps) {
                       src={primaryPreview}
                       alt="Primary photo preview"
                       className="w-full h-full object-cover rounded-[12px] border-2 border-gold"
+                      loading="lazy"
+                      decoding="async"
                     />
                     <button
                       type="button"
                       onClick={removePrimaryPhoto}
-                      className="absolute -top-2 -right-2 w-8 h-8 bg-destructive text-white rounded-full flex items-center justify-center hover:bg-destructive/80 transition-colors"
+                      className="absolute -top-3 -right-3 w-11 h-11 bg-destructive text-white rounded-full flex items-center justify-center hover:bg-destructive/80 transition-colors"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -210,7 +212,7 @@ export function StepPhotos({ defaultValues, onNext, onBack }: StepPhotosProps) {
                   Add more photos to showcase different sides of you.
                 </FormDescription>
 
-                <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3">
                   {/* Existing photos */}
                   {additionalPreviews.map((preview, index) => (
                     <div key={index} className="relative aspect-square">
@@ -218,11 +220,13 @@ export function StepPhotos({ defaultValues, onNext, onBack }: StepPhotosProps) {
                         src={preview}
                         alt={`Additional photo ${index + 1}`}
                         className="w-full h-full object-cover rounded-[8px] border border-gold-light"
+                        loading="lazy"
+                        decoding="async"
                       />
                       <button
                         type="button"
                         onClick={() => removeAdditionalPhoto(index)}
-                        className="absolute -top-1 -right-1 w-6 h-6 bg-destructive text-white rounded-full flex items-center justify-center hover:bg-destructive/80 transition-colors"
+                        className="absolute -top-3 -right-3 w-10 h-10 bg-destructive text-white rounded-full flex items-center justify-center hover:bg-destructive/80 transition-colors"
                       >
                         <X className="w-3 h-3" />
                       </button>

@@ -76,20 +76,20 @@ export default function FAQPage() {
   return (
     <PublicLayout>
       {/* Hero */}
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-cream via-soft-rose/30 to-cream">
-        <div className="container mx-auto px-4 lg:px-8 text-center">
-          <h1 className="font-serif text-4xl md:text-5xl font-bold text-dark mb-6">
+      <section className="py-14 sm:py-16 lg:py-24 bg-gradient-to-br from-cream via-soft-rose/30 to-cream">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-dark mb-4 sm:mb-6">
             Frequently Asked Questions
           </h1>
-          <p className="text-lg text-warm-gray max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-warm-gray max-w-2xl mx-auto">
             Everything you need to know about our matchmaking platform.
           </p>
         </div>
       </section>
 
       {/* FAQ Categories */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto space-y-12">
             {additionalFAQs.map((category, categoryIdx) => (
               <div key={categoryIdx}>
@@ -97,7 +97,7 @@ export default function FAQPage() {
                   <div className="w-10 h-10 bg-soft-rose rounded-full flex items-center justify-center">
                     <HelpCircle className="w-5 h-5 text-burgundy" />
                   </div>
-                  <h2 className="font-serif text-2xl font-bold text-dark">
+                  <h2 className="font-serif text-xl sm:text-2xl font-bold text-dark">
                     {category.category}
                   </h2>
                 </div>
@@ -125,13 +125,13 @@ export default function FAQPage() {
       </section>
 
       {/* Still Have Questions */}
-      <section className="py-20 bg-cream">
-        <div className="container mx-auto px-4 lg:px-8 text-center">
+      <section className="py-16 sm:py-20 bg-cream">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-2xl mx-auto">
-            <h2 className="font-serif text-3xl font-bold text-dark mb-4">
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-dark mb-3 sm:mb-4">
               Still Have Questions?
             </h2>
-            <p className="text-warm-gray text-lg mb-8">
+            <p className="text-warm-gray text-base sm:text-lg mb-6 sm:mb-8">
               Our team is here to help. Reach out to us and we'll get back to
               you within 24 hours.
             </p>
@@ -152,12 +152,12 @@ export default function FAQPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-burgundy to-burgundy-dark text-white">
-        <div className="container mx-auto px-4 lg:px-8 text-center">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold mb-6">
+      <section className="py-16 sm:py-20 bg-gradient-to-br from-burgundy to-burgundy-dark text-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
             Ready to Get Started?
           </h2>
-          <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-white/80 text-base sm:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto">
             Join hundreds of families who trust us to help them find meaningful
             connections.
           </p>

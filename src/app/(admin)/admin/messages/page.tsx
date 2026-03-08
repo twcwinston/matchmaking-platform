@@ -201,7 +201,7 @@ export default function MessagesPage() {
   const totalUnread = conversations.reduce((sum, c) => sum + c.unreadCount, 0);
 
   return (
-    <div className="p-8 h-[calc(100vh-2rem)]">
+    <div className="space-y-6 h-[calc(100dvh-10rem)]">
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-[#2D1318] flex items-center gap-3">
@@ -251,7 +251,7 @@ export default function MessagesPage() {
                   />
                 ))}
                 {filteredConversations.length === 0 && (
-                  <div className="p-8 text-center">
+                  <div className="p-6 text-center">
                     <MessageCircle className="w-12 h-12 text-[#F5E0E8] mx-auto mb-3" />
                     <p className="text-[#6B5B5E]">No conversations found</p>
                   </div>

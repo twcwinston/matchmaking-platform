@@ -176,8 +176,90 @@ export function ProfileTable({ profiles }: ProfileTableProps) {
         </Select>
       </div>
 
+      {/* Mobile Cards */}
+      <div className="grid gap-4 sm:hidden">
+        {paginatedProfiles.map((profile) => (
+          <div
+            key={profile.id}
+            className="bg-white rounded-2xl border border-[#F5E0E8]/50 shadow-sm p-4 space-y-3"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-full bg-[#F5E0E8] flex items-center justify-center text-[#7B1E3A] font-semibold">
+                {profile.name.charAt(0)}
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="font-semibold text-[#2D1318] truncate">{profile.name}</p>
+                <p className="text-sm text-[#6B5B5E] truncate">{profile.occupation}</p>
+              </div>
+              <Badge
+                variant="outline"
+                className={cn('capitalize', statusStyles[profile.status])}
+              >
+                {profile.status}
+              </Badge>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2 text-sm">
+              <div>
+                <p className="text-[#6B5B5E]">Age</p>
+                <p className="font-medium text-[#2D1318]">{profile.age}</p>
+              </div>
+              <div>
+                <p className="text-[#6B5B5E]">Gender</p>
+                <p className="font-medium text-[#2D1318] capitalize">{profile.gender}</p>
+              </div>
+              <div>
+                <p className="text-[#6B5B5E]">Location</p>
+                <p className="font-medium text-[#2D1318] truncate">{profile.location}</p>
+              </div>
+              <div>
+                <p className="text-[#6B5B5E]">Signup</p>
+                <p className="font-medium text-[#2D1318]">{formatDate(profile.signupDate)}</p>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <Badge
+                variant="outline"
+                className={cn('capitalize', verificationStyles[profile.verificationStatus])}
+              >
+                {profile.verificationStatus === 'verified' && (
+                  <ShieldCheck className="w-3 h-3 mr-1" />
+                )}
+                {profile.verificationStatus}
+              </Badge>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon">
+                    <MoreVertical className="w-4 h-4 text-[#6B5B5E]" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem className="cursor-pointer">
+                    <Eye className="w-4 h-4 mr-2" />
+                    View Profile
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="cursor-pointer">
+                    <Edit className="w-4 h-4 mr-2" />
+                    Edit
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="cursor-pointer">
+                    <ShieldCheck className="w-4 h-4 mr-2" />
+                    Verify
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="cursor-pointer text-red-600">
+                    <UserX className="w-4 h-4 mr-2" />
+                    Suspend
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          </div>
+        ))}
+      </div>
+
       {/* Table */}
-      <div className="bg-white rounded-2xl border border-[#F5E0E8]/50 shadow-sm overflow-hidden">
+      <div className="hidden sm:block bg-white rounded-2xl border border-[#F5E0E8]/50 shadow-sm overflow-hidden">
         <Table>
           <TableHeader>
             <TableRow className="bg-[#FFF8F0] hover:bg-[#FFF8F0]">
@@ -257,7 +339,7 @@ export function ProfileTable({ profiles }: ProfileTableProps) {
                 <TableCell className="text-right">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="icon" className="h-8 w-8">
+                      <Button variant="ghost" size="icon">
                         <MoreVertical className="w-4 h-4 text-[#6B5B5E]" />
                       </Button>
                     </DropdownMenuTrigger>

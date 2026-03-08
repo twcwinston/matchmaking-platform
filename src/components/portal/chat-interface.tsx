@@ -98,6 +98,8 @@ export function ChatInterface({
             src={matchmakerAvatar}
             alt={matchmakerName}
             className="w-10 h-10 rounded-full object-cover border-2 border-[#F5E0E8]"
+            loading="lazy"
+            decoding="async"
           />
         )}
         <div>
@@ -135,6 +137,8 @@ export function ChatInterface({
                         src={message.senderAvatar}
                         alt={message.senderName}
                         className="w-8 h-8 rounded-full object-cover flex-shrink-0 border border-[#F5E0E8]"
+                        loading="lazy"
+                        decoding="async"
                       />
                     )}
 
@@ -162,6 +166,8 @@ export function ChatInterface({
                         src={message.senderAvatar}
                         alt={message.senderName}
                         className="w-8 h-8 rounded-full object-cover flex-shrink-0 border border-[#F5E0E8]"
+                        loading="lazy"
+                        decoding="async"
                       />
                     )}
                   </div>
@@ -177,7 +183,7 @@ export function ChatInterface({
       <div className="p-4 bg-white border-t border-[#FECDD3]/50">
         <div className="flex items-end gap-2">
           <button
-            className="p-2 text-[#6B5B5E] hover:text-[#7B1E3A] hover:bg-[#F5E0E8] rounded-full transition-colors"
+            className="p-3 text-[#6B5B5E] hover:text-[#7B1E3A] hover:bg-[#F5E0E8] rounded-full transition-colors"
             title="Attach file"
           >
             <Paperclip className="w-5 h-5" />
@@ -197,7 +203,7 @@ export function ChatInterface({
           <Button
             onClick={handleSend}
             disabled={!inputValue.trim()}
-            className="bg-[#7B1E3A] hover:bg-[#5C1229] text-white rounded-full w-10 h-10 p-0 flex-shrink-0"
+            className="bg-[#7B1E3A] hover:bg-[#5C1229] text-white rounded-full w-11 h-11 p-0 flex-shrink-0"
           >
             <Send className="w-5 h-5" />
           </Button>

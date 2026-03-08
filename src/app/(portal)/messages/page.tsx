@@ -44,10 +44,10 @@ export default function MessagesPage() {
   };
 
   return (
-    <div className="h-[calc(100vh-64px)] lg:h-screen flex flex-col">
-      {/* Header */}
-      <div className="bg-white border-b border-[#FECDD3]/50 p-4 lg:p-6">
-        <h1 className="text-2xl lg:text-3xl font-serif font-bold text-[#2D1318] mb-1">Messages</h1>
+    <div className="h-[calc(100dvh-9rem)] lg:h-[calc(100vh-64px)] flex flex-col">
+      {/* Desktop Header */}
+      <div className="hidden lg:block bg-white border-b border-[#FECDD3]/50 p-6">
+        <h1 className="text-3xl font-serif font-bold text-[#2D1318] mb-1">Messages</h1>
         <p className="text-[#6B5B5E] text-sm">
           Chat with your dedicated matchmaker for guidance and updates.
         </p>

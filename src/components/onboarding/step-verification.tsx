@@ -133,7 +133,7 @@ export function StepVerification({ defaultValues, onNext, onBack }: StepVerifica
                 <FormLabel className="text-dark font-medium text-base">
                   Select Document Type
                 </FormLabel>
-                <div className="grid grid-cols-2 gap-4 mt-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
                   <label
                     className={cn(
                       "flex flex-col items-center p-6 rounded-[12px] border-2 cursor-pointer transition-all",
@@ -203,6 +203,8 @@ export function StepVerification({ defaultValues, onNext, onBack }: StepVerifica
                         src={documentPreview}
                         alt="Document preview"
                         className="w-full h-full object-contain"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                     <button

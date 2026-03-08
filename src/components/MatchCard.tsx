@@ -34,7 +34,7 @@ export function MatchCard({
   onPass,
 }: MatchCardProps) {
   return (
-    <Card className="group overflow-hidden bg-white border-gold-light/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+    <Card className="w-full group overflow-hidden bg-white border-gold-light/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
       {/* Photo Section */}
       <div className="relative aspect-[4/5] bg-soft-rose overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-dark/60" />

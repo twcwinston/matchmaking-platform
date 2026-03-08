@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -28,6 +29,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Logo } from "@/components/Logo";
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/admin", icon: LayoutDashboard, label: "Dashboard" },
@@ -44,8 +46,9 @@ interface AdminLayoutProps {
 
 export function AdminLayout({ children }: AdminLayoutProps) {
   const pathname = usePathname();
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = React.useState(false);
 
-  const NavLinks = () => (
+  const NavLinks = ({ collapsed = false }: { collapsed?: boolean }) => (
     <>
       {navItems.map((item) => {
         const isActive = pathname === item.href || 
@@ -55,15 +58,17 @@ export function AdminLayout({ children }: AdminLayoutProps) {
           <Link
             key={item.href}
             href={item.href}
-            className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+            className={cn(
+              "flex items-center gap-3 px-4 py-3 rounded-lg transition-colors",
+              collapsed && "justify-center px-2",
               isActive
                 ? "bg-burgundy text-white"
                 : "text-warm-gray hover:bg-soft-rose hover:text-burgundy"
-            }`}
+            )}
           >
             <item.icon className="w-5 h-5" />
-            <span className="font-medium">{item.label}</span>
-            {item.badge && (
+            {!collapsed && <span className="font-medium">{item.label}</span>}
+            {!collapsed && item.badge && (
               <Badge className="ml-auto bg-gold text-dark text-xs">
                 {item.badge}
               </Badge>
@@ -100,6 +105,15 @@ export function AdminLayout({ children }: AdminLayoutProps) {
               </SheetContent>
             </Sheet>
             <Logo variant="light" />
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hidden lg:inline-flex text-white hover:bg-white/10"
+              onClick={() => setIsSidebarCollapsed((prev) => !prev)}
+              aria-label={isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+            >
+              <Menu className="w-5 h-5" />
+            </Button>
             <Badge className="hidden md:block bg-gold text-dark ml-4">
               Matchmaker Dashboard
             </Badge>
@@ -159,14 +173,19 @@ export function AdminLayout({ children }: AdminLayoutProps) {
 
       <div className="flex">
         {/* Desktop Sidebar */}
-        <aside className="hidden lg:block w-[280px] bg-white border-r border-gold-light/50 min-h-[calc(100vh-4rem)] sticky top-16">
-          <nav className="p-4 space-y-1">
-            <NavLinks />
+        <aside
+          className={cn(
+            "hidden lg:block bg-white border-r border-gold-light/50 min-h-[calc(100vh-4rem)] sticky top-16 transition-all duration-200",
+            isSidebarCollapsed ? "w-[80px]" : "w-[280px]"
+          )}
+        >
+          <nav className={cn("p-4 space-y-1", isSidebarCollapsed && "px-2")}>
+            <NavLinks collapsed={isSidebarCollapsed} />
           </nav>
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 p-4 lg:p-8">
+        <main className="flex-1 p-4 sm:p-6 lg:p-8">
           <div className="max-w-7xl mx-auto">{children}</div>
         </main>
       </div>

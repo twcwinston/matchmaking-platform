@@ -52,10 +52,10 @@ export default function MatchesPage() {
   };
 
   return (
-    <div className="p-4 lg:p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-serif font-bold text-[#2D1318] mb-2">My Matches</h1>
+        <h1 className="text-2xl sm:text-3xl font-serif font-bold text-[#2D1318] mb-2">My Matches</h1>
         <p className="text-[#6B5B5E]">
           Your curated matches, handpicked by our matchmaker based on your preferences.
         </p>
@@ -68,11 +68,12 @@ export default function MatchesPage() {
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#6B5B5E]" />
             <input
-              type="text"
+              type="search"
               placeholder="Search by name, location, or occupation..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-[#E3C4A8] text-sm
+              inputMode="search"
+              className="w-full pl-10 pr-4 py-3 rounded-xl border border-[#E3C4A8] text-sm
                          focus:outline-none focus:border-[#7B1E3A] focus:ring-2 focus:ring-[#7B1E3A]/10"
             />
           </div>
@@ -84,7 +85,7 @@ export default function MatchesPage() {
                 key={status}
                 onClick={() => setFilterStatus(status)}
                 className={cn(
-                  "px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors",
+                  "px-4 py-3 rounded-lg text-sm font-medium whitespace-nowrap transition-colors",
                   filterStatus === status
                     ? "bg-[#7B1E3A] text-white"
                     : "bg-[#F5E0E8] text-[#6B5B5E] hover:bg-[#FECDD3]"
@@ -101,7 +102,7 @@ export default function MatchesPage() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as SortOption)}
-              className="px-3 py-2 rounded-lg border border-[#E3C4A8] text-sm bg-white
+              className="px-3 py-3 rounded-lg border border-[#E3C4A8] text-sm bg-white
                          focus:outline-none focus:border-[#7B1E3A]"
             >
               <option value="compatibility">Best Match</option>
@@ -113,7 +114,7 @@ export default function MatchesPage() {
               <button
                 onClick={() => setViewMode("grid")}
                 className={cn(
-                  "p-2 transition-colors",
+                  "p-3 transition-colors",
                   viewMode === "grid" ? "bg-[#7B1E3A] text-white" : "bg-white text-[#6B5B5E] hover:bg-[#F5E0E8]"
                 )}
               >
@@ -122,7 +123,7 @@ export default function MatchesPage() {
               <button
                 onClick={() => setViewMode("list")}
                 className={cn(
-                  "p-2 transition-colors",
+                  "p-3 transition-colors",
                   viewMode === "list" ? "bg-[#7B1E3A] text-white" : "bg-white text-[#6B5B5E] hover:bg-[#F5E0E8]"
                 )}
               >

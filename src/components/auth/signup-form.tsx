@@ -86,6 +86,8 @@ export function SignupForm() {
                   <Input
                     placeholder="Enter your full name"
                     className="h-12 border-gold-light focus:border-burgundy"
+                    autoComplete="name"
+                    inputMode="text"
                     {...field}
                   />
                 </FormControl>
@@ -107,6 +109,8 @@ export function SignupForm() {
                     type="email"
                     placeholder="you@example.com"
                     className="h-12 border-gold-light focus:border-burgundy"
+                    autoComplete="email"
+                    inputMode="email"
                     {...field}
                   />
                 </FormControl>
@@ -128,6 +132,8 @@ export function SignupForm() {
                     type="tel"
                     placeholder="+880 1XXX-XXXXXX"
                     className="h-12 border-gold-light focus:border-burgundy"
+                    autoComplete="tel"
+                    inputMode="tel"
                     {...field}
                   />
                 </FormControl>
@@ -150,12 +156,13 @@ export function SignupForm() {
                       type={showPassword ? "text" : "password"}
                       placeholder="Create a strong password"
                       className="h-12 border-gold-light focus:border-burgundy pr-12"
+                      autoComplete="new-password"
                       {...field}
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-warm-gray hover:text-dark transition-colors"
+                      className="absolute right-1 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-warm-gray hover:text-dark transition-colors"
                     >
                       {showPassword ? (
                         <EyeOff className="h-5 w-5" />
@@ -183,7 +190,7 @@ export function SignupForm() {
                   <RadioGroup
                     onValueChange={field.onChange}
                     defaultValue={field.value}
-                    className="flex gap-4"
+                    className="flex flex-col sm:flex-row gap-4"
                   >
                     <label
                       className={`flex-1 flex items-center gap-3 p-4 rounded-[8px] border-2 cursor-pointer transition-all ${

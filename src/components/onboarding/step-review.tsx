@@ -293,6 +293,8 @@ export function StepReview({ profileData, onEdit, onSubmit, onBack }: StepReview
                       src={profileData.photos.primaryPhoto} 
                       alt="Primary" 
                       className="w-full h-full object-cover" 
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                   <p className="text-xs text-center text-gold-dark mt-1">Primary</p>
@@ -305,6 +307,8 @@ export function StepReview({ profileData, onEdit, onSubmit, onBack }: StepReview
                       src={photo} 
                       alt={`Photo ${index + 1}`} 
                       className="w-full h-full object-cover" 
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </div>

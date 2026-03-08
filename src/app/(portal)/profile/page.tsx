@@ -18,13 +18,13 @@ import { currentUser } from "@/lib/mock-data";
 
 export default function ProfilePage() {
   return (
-    <div className="p-4 lg:p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       {/* Profile Header Card */}
       <div className="bg-white rounded-3xl shadow-sm border border-[#FECDD3]/50 overflow-hidden mb-8">
         {/* Cover gradient */}
         <div className="h-32 bg-gradient-to-r from-[#7B1E3A] to-[#9E3A55]" />
 
-        <div className="px-6 pb-6">
+        <div className="px-4 sm:px-6 pb-6">
           {/* Avatar & Basic Info */}
           <div className="flex flex-col md:flex-row gap-6 -mt-16">
             {/* Avatar */}
@@ -32,9 +32,11 @@ export default function ProfilePage() {
               <img
                 src={currentUser.photoUrl}
                 alt={currentUser.name}
-                className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg"
+                className="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover border-4 border-white shadow-lg"
+                loading="lazy"
+                decoding="async"
               />
-              <button className="absolute bottom-1 right-1 w-8 h-8 rounded-full bg-[#7B1E3A] text-white flex items-center justify-center shadow-lg hover:bg-[#5C1229] transition-colors">
+              <button className="absolute bottom-1 right-1 w-11 h-11 rounded-full bg-[#7B1E3A] text-white flex items-center justify-center shadow-lg hover:bg-[#5C1229] transition-colors">
                 <Camera className="w-4 h-4" />
               </button>
             </div>
@@ -70,7 +72,7 @@ export default function ProfilePage() {
                 </div>
 
                 <Link href="/profile/edit">
-                  <Button className="bg-[#7B1E3A] hover:bg-[#5C1229] text-white rounded-lg">
+                  <Button className="bg-[#7B1E3A] hover:bg-[#5C1229] text-white rounded-lg w-full sm:w-auto">
                     <Edit className="w-4 h-4 mr-2" />
                     Edit Profile
                   </Button>
@@ -101,7 +103,7 @@ export default function ProfilePage() {
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-3 gap-4 mt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
             <div className="text-center p-4 bg-[#F5E0E8] rounded-xl">
               <div className="text-2xl font-bold text-[#7B1E3A]">{currentUser.age}</div>
               <div className="text-xs text-[#6B5B5E]">Years Old</div>

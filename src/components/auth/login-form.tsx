@@ -73,6 +73,8 @@ export function LoginForm() {
                     type="email"
                     placeholder="you@example.com"
                     className="h-12 border-gold-light focus:border-burgundy"
+                    autoComplete="email"
+                    inputMode="email"
                     {...field}
                   />
                 </FormControl>
@@ -95,12 +97,13 @@ export function LoginForm() {
                       type={showPassword ? "text" : "password"}
                       placeholder="Enter your password"
                       className="h-12 border-gold-light focus:border-burgundy pr-12"
+                      autoComplete="current-password"
                       {...field}
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-warm-gray hover:text-dark transition-colors"
+                      className="absolute right-1 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-warm-gray hover:text-dark transition-colors"
                     >
                       {showPassword ? (
                         <EyeOff className="h-5 w-5" />

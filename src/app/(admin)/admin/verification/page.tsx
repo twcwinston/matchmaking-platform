@@ -32,7 +32,7 @@ export default function VerificationPage() {
   const approvedToday = processedIds.size;
 
   return (
-    <div className="p-8">
+    <div className="space-y-8">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
         <div>
@@ -47,7 +47,7 @@ export default function VerificationPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <div className="bg-white rounded-xl p-4 shadow-sm border border-[#F5E0E8]/50">
           <div className="flex items-center gap-2 text-[#6B5B5E] mb-1">
             <Clock className="w-4 h-4" />
@@ -84,7 +84,7 @@ export default function VerificationPage() {
           <AlertTriangle className="w-5 h-5" />
           Verification Guidelines
         </h2>
-        <ul className="grid md:grid-cols-2 gap-2 text-sm text-[#6B5B5E]">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-[#6B5B5E]">
           <li className="flex items-start gap-2">
             <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
             Name on document must match profile name

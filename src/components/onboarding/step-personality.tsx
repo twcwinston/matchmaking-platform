@@ -116,7 +116,7 @@ export function StepPersonality({ defaultValues, onNext, onBack }: StepPersonali
                   <RadioGroup
                     onValueChange={field.onChange}
                     defaultValue={field.value}
-                    className="grid grid-cols-2 gap-3"
+                    className="grid grid-cols-1 sm:grid-cols-2 gap-3"
                   >
                     {[
                       { value: "direct", label: "Direct", desc: "I say what I mean clearly" },

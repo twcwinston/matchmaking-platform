@@ -223,7 +223,7 @@ export function StepPreferences({ defaultValues, onNext, onBack }: StepPreferenc
                       <Badge
                         key={location}
                         variant="outline"
-                        className={`cursor-pointer px-3 py-1.5 transition-all ${
+                        className={`cursor-pointer px-3 py-2 transition-all ${
                           selectedLocations.includes(location)
                             ? "bg-burgundy text-white border-burgundy"
                             : "border-gold-light text-warm-gray hover:border-burgundy hover:text-burgundy"
@@ -303,7 +303,7 @@ export function StepPreferences({ defaultValues, onNext, onBack }: StepPreferenc
                       <Badge
                         key={option}
                         variant="outline"
-                        className={`cursor-pointer px-3 py-1.5 transition-all ${
+                        className={`cursor-pointer px-3 py-2 transition-all ${
                           selectedDealBreakers.includes(option)
                             ? "bg-destructive text-white border-destructive"
                             : "border-gold-light text-warm-gray hover:border-destructive hover:text-destructive"
@@ -339,7 +339,7 @@ export function StepPreferences({ defaultValues, onNext, onBack }: StepPreferenc
                       <Badge
                         key={option}
                         variant="outline"
-                        className={`cursor-pointer px-3 py-1.5 transition-all ${
+                        className={`cursor-pointer px-3 py-2 transition-all ${
                           selectedNiceToHaves.includes(option)
                             ? "bg-gold text-dark border-gold"
                             : "border-gold-light text-warm-gray hover:border-gold hover:text-gold-dark"
