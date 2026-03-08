@@ -72,11 +72,13 @@ export function IntroductionTimeline({ introductions, className }: IntroductionT
             {/* Content */}
             <div className="flex-1 pb-8">
               <div className="bg-white rounded-2xl shadow-sm border border-[#FECDD3]/50 p-4">
-                <div className="flex items-start gap-3 mb-3">
+                <div className="flex flex-col sm:flex-row sm:items-start gap-3 mb-3">
                   <img
                     src={intro.matchPhoto}
                     alt={intro.matchName}
                     className="w-12 h-12 rounded-full object-cover border-2 border-[#F5E0E8]"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="flex-1 min-w-0">
                     <h4 className="font-semibold text-[#2D1318] font-serif">
@@ -91,7 +93,7 @@ export function IntroductionTimeline({ introductions, className }: IntroductionT
                       {config.label}
                     </span>
                   </div>
-                  <time className="text-xs text-[#6B5B5E] whitespace-nowrap">
+                  <time className="text-xs text-[#6B5B5E] whitespace-nowrap sm:mt-1">
                     {new Date(intro.updatedAt).toLocaleDateString("en-US", {
                       month: "short",
                       day: "numeric",

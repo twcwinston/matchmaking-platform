@@ -93,7 +93,7 @@ export function StepFamily({ defaultValues, onNext, onBack }: StepFamilyProps) {
                   <RadioGroup
                     onValueChange={field.onChange}
                     defaultValue={field.value}
-                    className="grid grid-cols-3 gap-3"
+                    className="grid grid-cols-1 sm:grid-cols-3 gap-3"
                   >
                     {[
                       { value: "nuclear", label: "Nuclear", desc: "Parents & children" },
@@ -121,7 +121,7 @@ export function StepFamily({ defaultValues, onNext, onBack }: StepFamilyProps) {
           />
 
           {/* Parents' Occupations */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <FormField
               control={form.control}
               name="fatherOccupation"
@@ -164,7 +164,7 @@ export function StepFamily({ defaultValues, onNext, onBack }: StepFamilyProps) {
           </div>
 
           {/* Siblings */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <FormField
               control={form.control}
               name="siblingsCount"

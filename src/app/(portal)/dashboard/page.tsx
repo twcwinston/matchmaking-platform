@@ -22,7 +22,7 @@ export default function DashboardPage() {
   const upcomingMeeting = introductions.find((i) => i.status === "meeting_scheduled");
 
   return (
-    <div className="p-4 lg:p-8 space-y-8">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-8">
       {/* Profile Completion Banner */}
       {currentUser.profileCompletion < 100 && (
         <div className="bg-gradient-to-r from-[#7B1E3A] to-[#9E3A55] rounded-2xl p-6 text-white">
@@ -58,7 +58,7 @@ export default function DashboardPage() {
       )}
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
           label="Total Matches"
           value={dashboardStats.totalMatches}
@@ -118,7 +118,7 @@ export default function DashboardPage() {
         {/* Recent Matches */}
         <div className="lg:col-span-2">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-serif font-bold text-[#2D1318]">Recent Matches</h2>
+            <h2 className="text-lg sm:text-xl font-serif font-bold text-[#2D1318]">Recent Matches</h2>
             <Link
               href="/matches"
               className="text-[#7B1E3A] hover:text-[#5C1229] text-sm font-medium flex items-center gap-1"
@@ -127,7 +127,7 @@ export default function DashboardPage() {
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {recentMatches.map((match) => (
               <MatchCard key={match.id} match={match} />
             ))}
@@ -137,7 +137,7 @@ export default function DashboardPage() {
         {/* Notifications Sidebar */}
         <div>
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-serif font-bold text-[#2D1318]">Notifications</h2>
+            <h2 className="text-lg sm:text-xl font-serif font-bold text-[#2D1318]">Notifications</h2>
             <Bell className="w-5 h-5 text-[#6B5B5E]" />
           </div>
           <div className="bg-white rounded-2xl shadow-sm border border-[#FECDD3]/50 divide-y divide-[#F5E0E8]">
@@ -149,7 +149,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Quick Actions */}
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <QuickActionCard
           title="Browse Matches"
           description="View your curated matches"

@@ -6,7 +6,7 @@ import { CreditCard } from 'lucide-react';
 
 export default function PaymentsPage() {
   return (
-    <div className="p-8">
+    <div className="space-y-8">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#2D1318] flex items-center gap-3">

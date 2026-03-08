@@ -135,7 +135,7 @@ export default function AdminDashboard() {
   const pendingVerifications = mockVerifications.length;
 
   return (
-    <div className="p-8">
+    <div className="space-y-8">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#2D1318]">{greeting}, Matchmaker!</h1>

@@ -48,17 +48,17 @@ export default function SettingsPage() {
   ];
 
   return (
-    <div className="p-4 lg:p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-serif font-bold text-[#2D1318] mb-2">Settings</h1>
+        <h1 className="text-2xl sm:text-3xl font-serif font-bold text-[#2D1318] mb-2">Settings</h1>
         <p className="text-[#6B5B5E]">Manage your account settings and preferences.</p>
       </div>
 
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Sidebar Navigation */}
         <div className="lg:w-64 flex-shrink-0">
-          <nav className="bg-white rounded-2xl shadow-sm border border-[#FECDD3]/50 overflow-hidden">
+          <nav className="bg-white rounded-2xl shadow-sm border border-[#FECDD3]/50 overflow-hidden flex lg:block gap-2 p-2 lg:p-0 overflow-x-auto">
             {sections.map((section) => {
               const Icon = section.icon;
               return (
@@ -66,7 +66,7 @@ export default function SettingsPage() {
                   key={section.id}
                   onClick={() => setActiveSection(section.id)}
                   className={cn(
-                    "w-full flex items-center gap-3 px-4 py-3 text-left transition-colors",
+                    "flex items-center gap-3 px-4 py-3 text-left transition-colors rounded-xl lg:rounded-none whitespace-nowrap",
                     activeSection === section.id
                       ? "bg-[#7B1E3A] text-white"
                       : "text-[#6B5B5E] hover:bg-[#F5E0E8]"
@@ -294,9 +294,9 @@ function SettingsCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-[#FECDD3]/50 p-6">
+    <div className="bg-white rounded-2xl shadow-sm border border-[#FECDD3]/50 p-4 sm:p-6">
       <div className="mb-6">
-        <h2 className="text-xl font-serif font-bold text-[#2D1318]">{title}</h2>
+        <h2 className="text-lg sm:text-xl font-serif font-bold text-[#2D1318]">{title}</h2>
         <p className="text-sm text-[#6B5B5E]">{description}</p>
       </div>
       {children}
@@ -316,7 +316,7 @@ function SettingRow({
   action: string;
 }) {
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex flex-col sm:flex-row sm:items-center gap-4">
       <div className="w-10 h-10 rounded-xl bg-[#F5E0E8] flex items-center justify-center flex-shrink-0">
         <Icon className="w-5 h-5 text-[#7B1E3A]" />
       </div>
@@ -327,7 +327,7 @@ function SettingRow({
       <Button
         variant="outline"
         size="sm"
-        className="border-[#7B1E3A] text-[#7B1E3A] hover:bg-[#F5E0E8] rounded-lg"
+        className="border-[#7B1E3A] text-[#7B1E3A] hover:bg-[#F5E0E8] rounded-lg w-full sm:w-auto"
       >
         {action}
       </Button>
@@ -355,14 +355,14 @@ function ToggleSetting({
       <button
         onClick={() => onChange(!enabled)}
         className={cn(
-          "relative w-12 h-6 rounded-full transition-colors flex-shrink-0",
+          "relative w-16 h-11 rounded-full transition-colors flex-shrink-0",
           enabled ? "bg-[#7B1E3A]" : "bg-[#E3C4A8]"
         )}
       >
         <span
           className={cn(
-            "absolute top-1 w-4 h-4 bg-white rounded-full shadow transition-transform",
-            enabled ? "translate-x-7" : "translate-x-1"
+            "absolute top-2 left-2 w-7 h-7 bg-white rounded-full shadow transition-transform",
+            enabled ? "translate-x-7" : "translate-x-0"
           )}
         />
       </button>

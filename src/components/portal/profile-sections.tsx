@@ -34,7 +34,7 @@ export function ProfileSections({ profile, isOwnProfile = false, className }: Pr
 
       {/* Basic Info */}
       <ProfileSection title="Basic Information" icon={User}>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <InfoItem label="Age" value={`${profile.age} years`} icon={Calendar} />
           <InfoItem label="Height" value={profile.height} icon={Ruler} />
           <InfoItem label="Location" value={profile.location} icon={MapPin} />
@@ -116,7 +116,7 @@ export function ProfileSections({ profile, isOwnProfile = false, className }: Pr
 
       {/* Lifestyle */}
       <ProfileSection title="Lifestyle" icon={Sparkles}>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <div className="bg-[#FFF8F0] rounded-xl p-4">
             <p className="text-xs text-[#6B5B5E] mb-1">Daily Routine</p>
             <p className="font-medium text-[#2D1318]">{profile.lifestyle.routine}</p>
@@ -153,7 +153,7 @@ export function ProfileSections({ profile, isOwnProfile = false, className }: Pr
       {/* Photos */}
       {profile.photos.length > 1 && (
         <ProfileSection title="Photos" icon={Camera}>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {profile.photos.map((photo, index) => (
               <div 
                 key={index}
@@ -163,6 +163,8 @@ export function ProfileSections({ profile, isOwnProfile = false, className }: Pr
                   src={photo}
                   alt={`${profile.name} photo ${index + 1}`}
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             ))}

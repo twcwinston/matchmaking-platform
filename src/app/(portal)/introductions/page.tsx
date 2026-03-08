@@ -36,17 +36,17 @@ export default function IntroductionsPage() {
   };
 
   return (
-    <div className="p-4 lg:p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-serif font-bold text-[#2D1318] mb-2">Introductions</h1>
+        <h1 className="text-2xl sm:text-3xl font-serif font-bold text-[#2D1318] mb-2">Introductions</h1>
         <p className="text-[#6B5B5E]">
           Track your introductions and meeting progress with potential matches.
         </p>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <StatCard
           label="Pending"
           value={statusCounts.pending}
@@ -86,7 +86,7 @@ export default function IntroductionsPage() {
                 key={status}
                 onClick={() => setFilterStatus(status)}
                 className={cn(
-                  "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors",
+                  "flex items-center gap-2 px-4 py-3 rounded-lg text-sm font-medium transition-colors",
                   filterStatus === status
                     ? "bg-[#7B1E3A] text-white"
                     : "bg-[#F5E0E8] text-[#6B5B5E] hover:bg-[#FECDD3]"
@@ -123,7 +123,7 @@ export default function IntroductionsPage() {
         <h3 className="text-lg font-serif font-semibold text-[#2D1318] mb-3">
           How Introductions Work
         </h3>
-        <div className="grid md:grid-cols-3 gap-4 text-sm">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
           <div className="flex gap-3">
             <div className="w-8 h-8 rounded-full bg-[#7B1E3A] text-white flex items-center justify-center flex-shrink-0 font-bold">
               1

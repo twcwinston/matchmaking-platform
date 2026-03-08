@@ -43,13 +43,13 @@ export default function AboutPage() {
   return (
     <PublicLayout>
       {/* Hero */}
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-cream via-soft-rose/30 to-cream">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-14 sm:py-16 lg:py-24 bg-gradient-to-br from-cream via-soft-rose/30 to-cream">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="font-serif text-4xl md:text-5xl font-bold text-dark mb-6">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-dark mb-4 sm:mb-6">
               About Us
             </h1>
-            <p className="text-lg text-warm-gray leading-relaxed">
+            <p className="text-base sm:text-lg text-warm-gray leading-relaxed">
               We're on a mission to transform how people find their life
               partners — combining the wisdom of traditional matchmaking with
               the power of technology.
@@ -59,14 +59,14 @@ export default function AboutPage() {
       </section>
 
       {/* Vision */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
             <div>
-              <h2 className="font-serif text-3xl md:text-4xl font-bold text-dark mb-6">
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-dark mb-4 sm:mb-6">
                 Our Vision
               </h2>
-              <div className="space-y-4 text-warm-gray text-lg">
+              <div className="space-y-4 text-warm-gray text-base sm:text-lg">
                 <p>
                   In a world of endless swiping and superficial connections, we
                   believe there's a better way. Marriage is one of life's most
@@ -102,18 +102,18 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="py-20 bg-cream">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-16 sm:py-20 bg-cream">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-dark mb-4">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-dark mb-3 sm:mb-4">
               Our Values
             </h2>
-            <p className="text-warm-gray text-lg max-w-2xl mx-auto">
+            <p className="text-warm-gray text-base sm:text-lg max-w-2xl mx-auto">
               The principles that guide everything we do.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {values.map((value, idx) => (
               <Card key={idx} className="bg-white border-gold-light/50">
                 <CardContent className="p-6 text-center">
@@ -130,13 +130,13 @@ export default function AboutPage() {
       </section>
 
       {/* Approach */}
-      <section className="py-20 bg-dark text-white">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-16 sm:py-20 bg-dark text-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-8 text-center">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center">
               Our Approach
             </h2>
-            <div className="grid md:grid-cols-3 gap-8 text-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-center">
               <div>
                 <div className="text-gold text-5xl font-serif font-bold mb-4">
                   1
@@ -173,13 +173,13 @@ export default function AboutPage() {
       </section>
 
       {/* Team */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-dark mb-4">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-dark mb-3 sm:mb-4">
               Meet the Team
             </h2>
-            <p className="text-warm-gray text-lg max-w-2xl mx-auto">
+            <p className="text-warm-gray text-base sm:text-lg max-w-2xl mx-auto">
               The people behind your matchmaking journey.
             </p>
           </div>
@@ -204,12 +204,12 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-burgundy to-burgundy-dark text-white">
-        <div className="container mx-auto px-4 lg:px-8 text-center">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold mb-6">
+      <section className="py-16 sm:py-20 bg-gradient-to-br from-burgundy to-burgundy-dark text-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
             Join Our Community
           </h2>
-          <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-white/80 text-base sm:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto">
             Be part of a platform that values quality, trust, and meaningful
             connections.
           </p>

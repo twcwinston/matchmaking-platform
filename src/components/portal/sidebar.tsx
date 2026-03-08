@@ -45,7 +45,7 @@ export function Sidebar({ className }: SidebarProps) {
         <div className="flex items-center justify-between">
           <button
             onClick={() => setIsMobileOpen(true)}
-            className="p-2 text-[#2D1318] hover:bg-[#F5E0E8] rounded-lg"
+            className="p-3 text-[#2D1318] hover:bg-[#F5E0E8] rounded-lg"
           >
             <Menu className="w-6 h-6" />
           </button>
@@ -57,7 +57,7 @@ export function Sidebar({ className }: SidebarProps) {
           </Link>
           <Link
             href="/notifications"
-            className="p-2 text-[#2D1318] hover:bg-[#F5E0E8] rounded-lg relative"
+            className="p-3 text-[#2D1318] hover:bg-[#F5E0E8] rounded-lg relative"
           >
             <Bell className="w-6 h-6" />
             {unreadNotifications > 0 && (
@@ -98,7 +98,7 @@ export function Sidebar({ className }: SidebarProps) {
             </Link>
             <button
               onClick={() => setIsMobileOpen(false)}
-              className="lg:hidden p-1 text-[#6B5B5E] hover:text-[#2D1318]"
+              className="lg:hidden p-3 text-[#6B5B5E] hover:text-[#2D1318]"
             >
               <X className="w-5 h-5" />
             </button>
@@ -152,6 +152,8 @@ export function Sidebar({ className }: SidebarProps) {
               src={currentUser.photoUrl}
               alt={currentUser.name}
               className="w-10 h-10 rounded-full object-cover border-2 border-[#F5E0E8]"
+              loading="lazy"
+              decoding="async"
             />
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold text-[#2D1318] truncate">
@@ -163,13 +165,51 @@ export function Sidebar({ className }: SidebarProps) {
                 )}
               </div>
             </div>
-            <button className="p-1 text-[#6B5B5E] hover:text-[#7B1E3A]">
+            <button className="p-3 text-[#6B5B5E] hover:text-[#7B1E3A]">
               <ChevronDown className="w-4 h-4" />
             </button>
           </div>
         </div>
       </aside>
     </>
+  );
+}
+
+export function MobileBottomNav() {
+  const pathname = usePathname();
+
+  return (
+    <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#FECDD3]/50 pb-[env(safe-area-inset-bottom)]">
+      <div className="grid grid-cols-6 px-2 py-2">
+        {navItems.map((item) => {
+          const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
+          const Icon = item.icon;
+
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={cn(
+                "flex flex-col items-center justify-center gap-1 rounded-xl py-3 text-[11px] font-medium transition-colors",
+                isActive
+                  ? "text-[#7B1E3A] bg-[#F5E0E8]/60"
+                  : "text-[#6B5B5E] hover:text-[#7B1E3A] hover:bg-[#F5E0E8]"
+              )}
+            >
+              <div className="relative">
+                <Icon className="w-5 h-5" />
+                {item.badge && item.badge > 0 && (
+                  <span className="absolute -top-2 -right-2 w-4 h-4 bg-[#7B1E3A] text-white text-[9px] font-bold rounded-full flex items-center justify-center">
+                    {item.badge}
+                  </span>
+                )}
+              </div>
+              <span className="leading-none">{item.label}</span>
+            </Link>
+          );
+        })}
+      </div>
+    </nav>
   );
 }
 
@@ -198,7 +238,7 @@ export function TopBar({ className }: TopBarProps) {
 
       <div className="flex items-center gap-4">
         {/* Notifications */}
-        <button className="relative p-2 text-[#6B5B5E] hover:text-[#7B1E3A] hover:bg-[#F5E0E8] rounded-full transition-colors">
+        <button className="relative p-3 text-[#6B5B5E] hover:text-[#7B1E3A] hover:bg-[#F5E0E8] rounded-full transition-colors">
           <Bell className="w-6 h-6" />
           {unreadNotifications > 0 && (
             <span className="absolute top-0 right-0 w-5 h-5 bg-[#7B1E3A] text-white text-xs font-bold rounded-full flex items-center justify-center">
@@ -213,6 +253,8 @@ export function TopBar({ className }: TopBarProps) {
             src={currentUser.photoUrl}
             alt={currentUser.name}
             className="w-10 h-10 rounded-full object-cover border-2 border-[#F5E0E8]"
+            loading="lazy"
+            decoding="async"
           />
           <div className="hidden xl:block">
             <p className="text-sm font-semibold text-[#2D1318]">{currentUser.name}</p>

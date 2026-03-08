@@ -122,12 +122,12 @@ export default function HowItWorksPage() {
   return (
     <PublicLayout>
       {/* Hero */}
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-cream via-soft-rose/30 to-cream">
-        <div className="container mx-auto px-4 lg:px-8 text-center">
-          <h1 className="font-serif text-4xl md:text-5xl font-bold text-dark mb-6">
+      <section className="py-14 sm:py-16 lg:py-24 bg-gradient-to-br from-cream via-soft-rose/30 to-cream">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-dark mb-4 sm:mb-6">
             How It Works
           </h1>
-          <p className="text-lg text-warm-gray max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-warm-gray max-w-2xl mx-auto">
             A dignified, personal approach to finding your life partner. Here's
             how we make meaningful matches happen.
           </p>
@@ -135,8 +135,8 @@ export default function HowItWorksPage() {
       </section>
 
       {/* For Seekers */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-soft-rose px-4 py-2 rounded-full mb-4">
               <Users className="w-4 h-4 text-burgundy" />
@@ -144,10 +144,10 @@ export default function HowItWorksPage() {
                 For Seekers
               </span>
             </div>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-dark mb-4">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-dark mb-3 sm:mb-4">
               Your Journey to Finding Love
             </h2>
-            <p className="text-warm-gray text-lg max-w-2xl mx-auto">
+            <p className="text-warm-gray text-base sm:text-lg max-w-2xl mx-auto">
               Whether you're searching for yourself or with family support,
               here's what to expect.
             </p>
@@ -155,7 +155,7 @@ export default function HowItWorksPage() {
 
           <div className="max-w-4xl mx-auto">
             {seekerSteps.map((step, idx) => (
-              <div key={idx} className="flex gap-6 mb-12 last:mb-0">
+              <div key={idx} className="flex flex-col sm:flex-row gap-6 mb-12 last:mb-0">
                 {/* Step Number & Line */}
                 <div className="flex flex-col items-center">
                   <div className="w-14 h-14 bg-burgundy rounded-full flex items-center justify-center flex-shrink-0">
@@ -194,8 +194,8 @@ export default function HowItWorksPage() {
       </section>
 
       {/* For Families */}
-      <section className="py-20 bg-cream">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-16 sm:py-20 bg-cream">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-soft-rose px-4 py-2 rounded-full mb-4">
               <Home className="w-4 h-4 text-burgundy" />
@@ -203,16 +203,16 @@ export default function HowItWorksPage() {
                 For Families
               </span>
             </div>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-dark mb-4">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-dark mb-3 sm:mb-4">
               Family Involvement Welcome
             </h2>
-            <p className="text-warm-gray text-lg max-w-2xl mx-auto">
+            <p className="text-warm-gray text-base sm:text-lg max-w-2xl mx-auto">
               We understand the importance of family in the matchmaking process.
               Here's how families can participate.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {familyFeatures.map((feature, idx) => (
               <Card key={idx} className="bg-white border-gold-light/50">
                 <CardContent className="p-6">
@@ -231,14 +231,14 @@ export default function HowItWorksPage() {
       </section>
 
       {/* What Makes Us Different */}
-      <section className="py-20 bg-dark text-white">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-16 sm:py-20 bg-dark text-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-12 text-center">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-12 text-center">
               What Makes Us Different
             </h2>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-6">
                 <h3 className="text-gold font-semibold text-lg">
                   Traditional Sites
@@ -298,12 +298,12 @@ export default function HowItWorksPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 lg:px-8 text-center">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-dark mb-6">
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-dark mb-4 sm:mb-6">
             Ready to Begin?
           </h2>
-          <p className="text-warm-gray text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-warm-gray text-base sm:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto">
             Start creating your profile today. Our team is ready to help you
             find meaningful connections.
           </p>

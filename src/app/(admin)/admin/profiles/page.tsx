@@ -15,7 +15,7 @@ export default function ProfilesPage() {
   ).length;
 
   return (
-    <div className="p-8">
+    <div className="space-y-8">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
         <div>
@@ -43,7 +43,7 @@ export default function ProfilesPage() {
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <div className="bg-white rounded-xl p-4 shadow-sm border border-[#F5E0E8]/50">
           <p className="text-sm text-[#6B5B5E]">Total Profiles</p>
           <p className="text-2xl font-bold text-[#2D1318] mt-1">{totalProfiles}</p>

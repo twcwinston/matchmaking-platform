@@ -110,7 +110,7 @@ export function StepLifestyle({ defaultValues, onNext, onBack }: StepLifestylePr
                   <RadioGroup
                     onValueChange={field.onChange}
                     defaultValue={field.value}
-                    className="grid grid-cols-3 gap-3"
+                    className="grid grid-cols-1 sm:grid-cols-3 gap-3"
                   >
                     {[
                       { value: "early-bird", label: "Early Bird", icon: Sun },
@@ -215,7 +215,7 @@ export function StepLifestyle({ defaultValues, onNext, onBack }: StepLifestylePr
                           <Badge
                             key={hobby}
                             variant="secondary"
-                            className="bg-burgundy text-white hover:bg-burgundy-dark cursor-pointer px-3 py-1.5"
+                            className="bg-burgundy text-white hover:bg-burgundy-dark cursor-pointer px-3 py-2"
                             onClick={() => toggleHobby(hobby)}
                           >
                             {hobby}
@@ -230,7 +230,7 @@ export function StepLifestyle({ defaultValues, onNext, onBack }: StepLifestylePr
                         <Badge
                           key={hobby}
                           variant="outline"
-                          className={`cursor-pointer px-3 py-1.5 transition-all ${
+                          className={`cursor-pointer px-3 py-2 transition-all ${
                             selectedHobbies.includes(hobby)
                               ? "bg-burgundy text-white border-burgundy"
                               : "border-gold-light text-warm-gray hover:border-burgundy hover:text-burgundy"

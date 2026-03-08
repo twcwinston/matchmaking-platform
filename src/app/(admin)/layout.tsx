@@ -1,4 +1,4 @@
-import { AdminSidebar } from '@/components/admin/admin-sidebar';
+import { AdminLayout as AdminShell } from '@/components/layouts/AdminLayout';
 
 export const metadata = {
   title: 'Admin Portal | Matchmaker',
@@ -11,11 +11,6 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-[#FFF8F0]">
-      <AdminSidebar />
-      <main className="ml-64 min-h-screen">
-        {children}
-      </main>
-    </div>
+    <AdminShell>{children}</AdminShell>
   );
 }

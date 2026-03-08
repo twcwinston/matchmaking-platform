@@ -300,8 +300,71 @@ export function PaymentTable({ payments }: PaymentTableProps) {
         </Button>
       </div>
 
+      {/* Mobile Cards */}
+      <div className="grid gap-4 sm:hidden">
+        {paginatedPayments.map((payment) => {
+          const StatusIcon = statusIcons[payment.status];
+          const MethodIcon = methodIcons[payment.method];
+
+          return (
+            <div
+              key={payment.id}
+              className="bg-white rounded-2xl border border-[#F5E0E8]/50 shadow-sm p-4 space-y-3"
+            >
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="w-10 h-10 rounded-full bg-[#F5E0E8] flex items-center justify-center text-[#7B1E3A] font-semibold text-sm">
+                    {payment.userName.charAt(0)}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-semibold text-[#2D1318] truncate">{payment.userName}</p>
+                    <p className="text-xs text-[#6B5B5E] truncate">{payment.reference}</p>
+                  </div>
+                </div>
+                <Badge
+                  variant="outline"
+                  className={cn('capitalize', statusStyles[payment.status])}
+                >
+                  <StatusIcon className="w-3 h-3 mr-1" />
+                  {payment.status}
+                </Badge>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2 text-sm">
+                <div>
+                  <p className="text-[#6B5B5E]">Amount</p>
+                  <p className="font-semibold text-[#2D1318]">
+                    {formatAmount(payment.amount, payment.currency)}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-[#6B5B5E]">Type</p>
+                  <Badge
+                    variant="outline"
+                    className="bg-[#F5E0E8]/50 text-[#7B1E3A] border-[#F5E0E8]"
+                  >
+                    {typeLabels[payment.type]}
+                  </Badge>
+                </div>
+                <div>
+                  <p className="text-[#6B5B5E]">Method</p>
+                  <div className="flex items-center gap-2 text-[#6B5B5E]">
+                    <MethodIcon className="w-4 h-4" />
+                    <span className="capitalize">{payment.method}</span>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-[#6B5B5E]">Date</p>
+                  <p className="text-[#2D1318]">{formatDate(payment.date)}</p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
       {/* Table */}
-      <div className="bg-white rounded-2xl border border-[#F5E0E8]/50 shadow-sm overflow-hidden">
+      <div className="hidden sm:block bg-white rounded-2xl border border-[#F5E0E8]/50 shadow-sm overflow-hidden">
         <Table>
           <TableHeader>
             <TableRow className="bg-[#FFF8F0] hover:bg-[#FFF8F0]">

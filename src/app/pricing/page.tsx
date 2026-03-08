@@ -66,12 +66,12 @@ export default function PricingPage() {
   return (
     <PublicLayout>
       {/* Hero */}
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-cream via-soft-rose/30 to-cream">
-        <div className="container mx-auto px-4 lg:px-8 text-center">
-          <h1 className="font-serif text-4xl md:text-5xl font-bold text-dark mb-6">
+      <section className="py-14 sm:py-16 lg:py-24 bg-gradient-to-br from-cream via-soft-rose/30 to-cream">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-dark mb-4 sm:mb-6">
             Simple, Transparent Pricing
           </h1>
-          <p className="text-lg text-warm-gray max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-warm-gray max-w-2xl mx-auto">
             One-time payment. No subscriptions. No hidden fees. Just
             quality matchmaking.
           </p>
@@ -79,9 +79,9 @@ export default function PricingPage() {
       </section>
 
       {/* Pricing Cards */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {plans.map((plan, idx) => (
               <Card
                 key={idx}
@@ -143,13 +143,13 @@ export default function PricingPage() {
       </section>
 
       {/* What's Included */}
-      <section className="py-20 bg-cream">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-16 sm:py-20 bg-cream">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <h2 className="font-serif text-3xl font-bold text-dark mb-8 text-center">
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-dark mb-6 sm:mb-8 text-center">
               What's Included in Every Plan
             </h2>
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {[
                 "Complete profile review",
                 "ID verification",
@@ -175,10 +175,10 @@ export default function PricingPage() {
       </section>
 
       {/* FAQs */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-serif text-3xl font-bold text-dark mb-8 text-center">
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-dark mb-6 sm:mb-8 text-center">
               Pricing FAQs
             </h2>
             <div className="space-y-6">
@@ -204,12 +204,12 @@ export default function PricingPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-burgundy to-burgundy-dark text-white">
-        <div className="container mx-auto px-4 lg:px-8 text-center">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold mb-6">
+      <section className="py-16 sm:py-20 bg-gradient-to-br from-burgundy to-burgundy-dark text-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
             Ready to Find Your Life Partner?
           </h2>
-          <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-white/80 text-base sm:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto">
             Join today and let us help you find meaningful connections.
           </p>
           <Button

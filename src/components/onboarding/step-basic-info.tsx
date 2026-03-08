@@ -112,6 +112,8 @@ export function StepBasicInfo({ defaultValues, onNext }: StepBasicInfoProps) {
                   <Input
                     placeholder="Enter your full name"
                     className="h-12 border-gold-light focus:border-burgundy"
+                    autoComplete="name"
+                    inputMode="text"
                     {...field}
                   />
                 </FormControl>
@@ -235,6 +237,8 @@ export function StepBasicInfo({ defaultValues, onNext }: StepBasicInfoProps) {
                     type="tel"
                     placeholder="+880 1XXX-XXXXXX"
                     className="h-12 border-gold-light focus:border-burgundy"
+                    inputMode="tel"
+                    autoComplete="tel"
                     {...field}
                   />
                 </FormControl>

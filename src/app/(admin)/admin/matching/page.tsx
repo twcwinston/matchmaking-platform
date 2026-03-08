@@ -86,7 +86,7 @@ export default function MatchingPage() {
   const mutualCount = matches.filter((m) => m.status === 'mutual').length;
 
   return (
-    <div className="p-8">
+    <div className="space-y-8">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
         <div>
@@ -105,7 +105,7 @@ export default function MatchingPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
         <div className="bg-white rounded-xl p-4 shadow-sm border border-[#F5E0E8]/50">
           <p className="text-sm text-[#6B5B5E]">Pending Review</p>
           <p className="text-2xl font-bold text-blue-600 mt-1">{suggestedCount}</p>
@@ -120,7 +120,7 @@ export default function MatchingPage() {
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Profile Selector */}
         <div className="lg:col-span-1">
           <div className="bg-white rounded-2xl shadow-sm border border-[#F5E0E8]/50 overflow-hidden sticky top-8">

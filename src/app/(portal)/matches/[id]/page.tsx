@@ -69,7 +69,7 @@ export default function MatchDetailPage({
         <div className="absolute inset-0 h-80 bg-gradient-to-b from-[#7B1E3A]/10 to-transparent" />
 
         {/* Back Button */}
-        <div className="relative z-10 p-4 lg:p-8">
+        <div className="relative z-10 p-4 sm:p-6 lg:p-8">
           <Link
             href="/matches"
             className="inline-flex items-center gap-2 text-[#6B5B5E] hover:text-[#7B1E3A] transition-colors"
@@ -80,7 +80,7 @@ export default function MatchDetailPage({
         </div>
 
         {/* Profile Header */}
-        <div className="relative z-10 px-4 lg:px-8 pb-8">
+        <div className="relative z-10 px-4 sm:px-6 lg:px-8 pb-8">
           <div className="max-w-5xl mx-auto">
             <div className="bg-white rounded-3xl shadow-lg border border-[#FECDD3]/50 overflow-hidden">
               <div className="md:flex">
@@ -91,6 +91,8 @@ export default function MatchDetailPage({
                       src={profile.photoUrl}
                       alt={profile.name}
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                   {/* Gradient overlay */}
@@ -104,14 +106,14 @@ export default function MatchDetailPage({
                 </div>
 
                 {/* Info Section */}
-                <div className="md:w-3/5 p-6 lg:p-8">
+                <div className="md:w-3/5 p-4 sm:p-6 lg:p-8">
                   <div className="flex flex-col h-full">
                     {/* Name & Basic Info */}
                     <div className="mb-6">
-                      <h1 className="text-3xl lg:text-4xl font-serif font-bold text-[#2D1318] mb-2">
+                      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-[#2D1318] mb-2">
                         {profile.name}, {profile.age}
                       </h1>
-                      <p className="text-lg text-[#6B5B5E] mb-4">{profile.headline}</p>
+                      <p className="text-base sm:text-lg text-[#6B5B5E] mb-4">{profile.headline}</p>
                       
                       <div className="flex flex-wrap gap-4 text-sm text-[#6B5B5E]">
                         <div className="flex items-center gap-2">
@@ -130,7 +132,7 @@ export default function MatchDetailPage({
                     </div>
 
                     {/* Compatibility Score */}
-                    <div className="flex items-center gap-6 mb-6 p-4 bg-[#FFF8F0] rounded-xl">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-6 p-4 bg-[#FFF8F0] rounded-xl">
                       <CompatibilityScore score={compatibilityScore} size="lg" />
                       <div className="flex-1">
                         <h3 className="font-semibold text-[#2D1318] mb-2">Compatibility Score</h3>
@@ -139,18 +141,18 @@ export default function MatchDetailPage({
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex gap-3 mt-auto">
+                    <div className="flex flex-col sm:flex-row gap-3 mt-auto">
                       <Button
                         onClick={handlePass}
                         variant="outline"
-                        className="flex-1 border-[#6B5B5E] text-[#6B5B5E] hover:bg-[#F5E0E8] rounded-xl py-6"
+                        className="flex-1 border-[#6B5B5E] text-[#6B5B5E] hover:bg-[#F5E0E8] rounded-xl"
                       >
                         <X className="w-5 h-5 mr-2" />
                         Pass
                       </Button>
                       <Button
                         onClick={handleInterest}
-                        className="flex-1 bg-[#7B1E3A] hover:bg-[#5C1229] text-white rounded-xl py-6"
+                        className="flex-1 bg-[#7B1E3A] hover:bg-[#5C1229] text-white rounded-xl"
                       >
                         <Heart className="w-5 h-5 mr-2" />
                         I&apos;m Interested
@@ -158,16 +160,16 @@ export default function MatchDetailPage({
                     </div>
 
                     {/* Secondary Actions */}
-                    <div className="flex justify-center gap-6 mt-4 pt-4 border-t border-[#F5E0E8]">
-                      <button className="flex items-center gap-2 text-sm text-[#6B5B5E] hover:text-[#7B1E3A] transition-colors">
+                    <div className="flex flex-wrap justify-center gap-3 mt-4 pt-4 border-t border-[#F5E0E8]">
+                      <button className="flex items-center gap-2 text-sm text-[#6B5B5E] hover:text-[#7B1E3A] transition-colors px-3 py-2 rounded-lg hover:bg-[#F5E0E8]">
                         <MessageCircle className="w-4 h-4" />
                         Ask Matchmaker
                       </button>
-                      <button className="flex items-center gap-2 text-sm text-[#6B5B5E] hover:text-[#7B1E3A] transition-colors">
+                      <button className="flex items-center gap-2 text-sm text-[#6B5B5E] hover:text-[#7B1E3A] transition-colors px-3 py-2 rounded-lg hover:bg-[#F5E0E8]">
                         <Share2 className="w-4 h-4" />
                         Share
                       </button>
-                      <button className="flex items-center gap-2 text-sm text-[#6B5B5E] hover:text-[#7B1E3A] transition-colors">
+                      <button className="flex items-center gap-2 text-sm text-[#6B5B5E] hover:text-[#7B1E3A] transition-colors px-3 py-2 rounded-lg hover:bg-[#F5E0E8]">
                         <Flag className="w-4 h-4" />
                         Report
                       </button>
@@ -181,7 +183,7 @@ export default function MatchDetailPage({
       </div>
 
       {/* Content Section */}
-      <div className="px-4 lg:px-8 pb-8">
+      <div className="px-4 sm:px-6 lg:px-8 pb-8">
         <div className="max-w-5xl mx-auto">
           <div className="grid lg:grid-cols-3 gap-6">
             {/* Why Matched */}
@@ -198,7 +200,7 @@ export default function MatchDetailPage({
       </div>
 
       {/* Fixed Bottom CTA (Mobile) */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-[#FECDD3] p-4 z-30">
+      <div className="lg:hidden fixed bottom-20 left-0 right-0 bg-white border-t border-[#FECDD3] p-4 z-30">
         <div className="flex gap-3">
           <Button
             onClick={handlePass}
@@ -219,7 +221,7 @@ export default function MatchDetailPage({
       </div>
 
       {/* Bottom spacing for fixed CTA on mobile */}
-      <div className="lg:hidden h-20" />
+      <div className="lg:hidden h-36" />
     </div>
   );
 }

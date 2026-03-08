@@ -65,61 +65,74 @@ export default function HomePage() {
   const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const mm = gsap.matchMedia();
     const ctx = gsap.context(() => {
-      // Hero parallax
-      gsap.to(".hero-image", {
-        yPercent: 30,
-        ease: "none",
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+      }
+
+      mm.add("(min-width: 768px)", () => {
+        gsap.to(".hero-image", {
+          yPercent: 30,
+          ease: "none",
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      });
+
+      mm.add("(max-width: 767px)", () => {
+        gsap.set(".hero-image", { yPercent: 0 });
       });
 
       // Hero text stagger
       gsap.from(".hero-text-item", {
-        y: 60,
+        y: 50,
         opacity: 0,
-        duration: 1,
-        stagger: 0.15,
+        duration: 0.9,
+        stagger: 0.12,
         ease: "power3.out",
       });
 
       // Steps stagger reveal
       gsap.from(".step-item", {
-        y: 80,
+        y: 60,
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
+        duration: 0.7,
+        stagger: 0.18,
         ease: "power3.out",
         scrollTrigger: {
           trigger: stepsRef.current,
-          start: "top 75%",
+          start: "top 80%",
         },
       });
 
       // CTA fade up
       gsap.from(".cta-content", {
-        y: 60,
+        y: 50,
         opacity: 0,
-        duration: 1,
+        duration: 0.9,
         ease: "power3.out",
         scrollTrigger: {
           trigger: ctaRef.current,
-          start: "top 80%",
+          start: "top 85%",
         },
       });
     });
 
-    return () => ctx.revert();
+    return () => {
+      mm.revert();
+      ctx.revert();
+    };
   }, []);
 
   return (
     <main className="overflow-hidden -mt-16">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative h-screen min-h-[700px] flex items-center justify-center">
+      <section ref={heroRef} className="relative h-[100svh] min-h-[620px] sm:h-screen flex items-center justify-center">
         {/* Background Image with Parallax */}
         <div className="absolute inset-0 overflow-hidden">
           <Image
@@ -128,21 +141,22 @@ export default function HomePage() {
             fill
             className="hero-image object-cover scale-110"
             priority
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#2D1318]/60 via-[#2D1318]/40 to-[#2D1318]/80" />
         </div>
 
         {/* Hero Content */}
-        <div ref={heroTextRef} className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-          <p className="hero-text-item text-[#C9956B] font-medium tracking-[0.3em] uppercase text-sm mb-6">
+        <div ref={heroTextRef} className="relative z-10 text-center px-4 sm:px-6 max-w-3xl mx-auto">
+          <p className="hero-text-item text-[#C9956B] font-medium tracking-[0.2em] uppercase text-xs sm:text-sm mb-4 sm:mb-6">
             Where Love Finds Its Way
           </p>
-          <h1 className="hero-text-item font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+          <h1 className="hero-text-item font-serif text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
             Meaningful Matches,
             <br />
             <span className="text-[#C9956B]">Timeless Bonds</span>
           </h1>
-          <p className="hero-text-item text-white/80 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+          <p className="hero-text-item text-white/80 text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-2xl mx-auto">
             Expert matchmakers. Verified profiles. Real connections.
           </p>
           <div className="hero-text-item flex flex-col sm:flex-row gap-4 justify-center">
@@ -168,14 +182,14 @@ export default function HomePage() {
       </section>
 
       {/* How It Works */}
-      <section ref={stepsRef} className="py-24 md:py-32 bg-[#FFF8F0]">
-        <div className="max-w-5xl mx-auto px-6">
+      <section ref={stepsRef} className="py-20 sm:py-24 md:py-32 bg-[#FFF8F0]">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <p className="text-[#C9956B] font-medium tracking-[0.2em] uppercase text-sm mb-4">Simple & Elegant</p>
-            <h2 className="font-serif text-3xl md:text-5xl font-bold text-[#2D1318]">How It Works</h2>
+            <p className="text-[#C9956B] font-medium tracking-[0.2em] uppercase text-xs sm:text-sm mb-3 sm:mb-4">Simple & Elegant</p>
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-5xl font-bold text-[#2D1318]">How It Works</h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-12">
             {steps.map((step, i) => (
               <div key={i} className="step-item text-center">
                 <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-[#F5E0E8] flex items-center justify-center">
@@ -190,9 +204,9 @@ export default function HomePage() {
       </section>
 
       {/* Stats Bar */}
-      <section className="py-16 bg-[#2D1318]">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="grid grid-cols-3 gap-8 text-center">
+      <section className="py-14 sm:py-16 bg-[#2D1318]">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
             {stats.map((stat, i) => (
               <div key={i}>
                 <div className="font-serif text-3xl md:text-5xl font-bold text-[#C9956B] mb-2">
@@ -206,17 +220,17 @@ export default function HomePage() {
       </section>
 
       {/* Final CTA */}
-      <section ref={ctaRef} className="relative py-32 md:py-40">
+      <section ref={ctaRef} className="relative py-24 sm:py-32 md:py-40">
         <div className="absolute inset-0">
-          <Image src={CTA_BG} alt="Elegant background" fill className="object-cover" />
+          <Image src={CTA_BG} alt="Elegant background" fill className="object-cover" sizes="100vw" />
           <div className="absolute inset-0 bg-[#7B1E3A]/85" />
         </div>
 
-        <div className="cta-content relative z-10 text-center px-6 max-w-3xl mx-auto">
-          <h2 className="font-serif text-3xl md:text-5xl font-bold text-white mb-6">
+        <div className="cta-content relative z-10 text-center px-4 sm:px-6 max-w-3xl mx-auto">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
             Your Story Awaits
           </h2>
-          <p className="text-white/80 text-lg mb-10">
+          <p className="text-white/80 text-base sm:text-lg mb-8 sm:mb-10">
             Join hundreds of families who found love through thoughtful matchmaking.
           </p>
           <Button

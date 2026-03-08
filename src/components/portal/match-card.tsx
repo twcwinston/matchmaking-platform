@@ -19,7 +19,7 @@ export function MatchCard({ match, className }: MatchCardProps) {
     <Link href={`/matches/${match.id}`}>
       <div
         className={cn(
-          "group bg-white rounded-2xl shadow-sm border border-[#FECDD3]/50 overflow-hidden",
+          "group w-full bg-white rounded-2xl shadow-sm border border-[#FECDD3]/50 overflow-hidden",
           "transition-all duration-200 ease-out",
           "hover:shadow-lg hover:-translate-y-1",
           "cursor-pointer",
@@ -32,6 +32,8 @@ export function MatchCard({ match, className }: MatchCardProps) {
             src={profile.photoUrl}
             alt={profile.name}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            loading="lazy"
+            decoding="async"
           />
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />

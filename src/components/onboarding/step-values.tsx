@@ -262,7 +262,7 @@ export function StepValues({ defaultValues, onNext, onBack }: StepValuesProps) {
                   <RadioGroup
                     onValueChange={field.onChange}
                     defaultValue={field.value}
-                    className="grid grid-cols-3 gap-3"
+                    className="grid grid-cols-1 sm:grid-cols-3 gap-3"
                   >
                     {[
                       { value: "yes", label: "Yes", desc: "Happy to live together" },

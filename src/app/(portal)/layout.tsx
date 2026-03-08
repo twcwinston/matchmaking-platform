@@ -1,4 +1,4 @@
-import { Sidebar, TopBar } from "@/components/portal/sidebar";
+import { MobileBottomNav, Sidebar, TopBar } from "@/components/portal/sidebar";
 
 export default function PortalLayout({
   children,
@@ -15,11 +15,12 @@ export default function PortalLayout({
         <main className="flex-1 lg:ml-0">
           <TopBar />
           {/* Mobile spacing for fixed header */}
-          <div className="pt-16 lg:pt-0">
+          <div className="pt-16 pb-20 lg:pt-0 lg:pb-0">
             {children}
           </div>
         </main>
       </div>
+      <MobileBottomNav />
     </div>
   );
 }
