@@ -56,17 +56,44 @@ export function SignupForm() {
   async function onSubmit(data: SignupFormValues) {
     setIsLoading(true);
     try {
-      const res = await fetch("/api/auth/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+      // Use client-side Supabase directly to avoid server-side cookies
+      // This prevents the middleware from seeing an authenticated user
+      // and redirecting away before the success message shows
+      const { createClient } = await import("@/lib/supabase/client");
+      const supabase = createClient();
+      
+      const role = data.profileFor === "family" ? "family" : "seeker";
+      
+      const { data: authData, error: authError } = await supabase.auth.signUp({
+        email: data.email,
+        password: data.password,
+        options: {
+          data: {
+            name: data.name,
+            phone: data.phone,
+            role,
+          },
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
+        },
       });
 
-      const result = await res.json();
-
-      if (!res.ok) {
-        form.setError("root", { message: result.error || "Signup failed" });
+      if (authError) {
+        form.setError("root", { message: authError.message });
         return;
+      }
+
+      // Update the auto-created profile with signup details via API
+      if (authData.user) {
+        await fetch("/api/auth/complete-signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            userId: authData.user.id,
+            name: data.name,
+            phone: data.phone,
+            profileFor: data.profileFor,
+          }),
+        });
       }
 
       // Show success message
