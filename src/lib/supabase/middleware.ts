@@ -36,6 +36,41 @@ export async function updateSession(request: NextRequest) {
     }
   );
 
+  // Handle PKCE auth code exchange (email verification redirect)
+  const code = request.nextUrl.searchParams.get("code");
+  if (code) {
+    const { error } = await supabase.auth.exchangeCodeForSession(code);
+    if (!error) {
+      // Code exchanged successfully, redirect to create-profile (new users)
+      // or dashboard (existing users)
+      const { data: { user: codeUser } } = await supabase.auth.getUser();
+      if (codeUser) {
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("status")
+          .eq("user_id", codeUser.id)
+          .single();
+
+        const url = request.nextUrl.clone();
+        url.searchParams.delete("code");
+        if (!profile || profile.status === "draft") {
+          url.pathname = "/create-profile";
+        } else {
+          url.pathname = "/dashboard";
+        }
+        
+        // Must set cookies from the response
+        const redirectResponse = NextResponse.redirect(url);
+        supabaseResponse.cookies.getAll().forEach(cookie => {
+          redirectResponse.cookies.set(cookie.name, cookie.value, {
+            ...cookie,
+          });
+        });
+        return redirectResponse;
+      }
+    }
+  }
+
   const {
     data: { user },
   } = await supabase.auth.getUser();

@@ -38,6 +38,8 @@ type SignupFormValues = z.infer<typeof signupSchema>;
 export function SignupForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [submittedEmail, setSubmittedEmail] = useState("");
 
   const form = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
@@ -67,13 +69,37 @@ export function SignupForm() {
         return;
       }
 
-      // Redirect to profile creation
-      window.location.href = "/create-profile";
+      // Show success message
+      setSubmittedEmail(data.email);
+      setSuccess(true);
     } catch {
       form.setError("root", { message: "Something went wrong. Please try again." });
     } finally {
       setIsLoading(false);
     }
+  }
+
+  if (success) {
+    return (
+      <div className="text-center space-y-4 py-8">
+        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+          <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h3 className="text-xl font-semibold text-foreground">Check your email</h3>
+        <p className="text-muted-foreground">
+          We've sent a verification link to <strong>{submittedEmail}</strong>. 
+          Click the link to verify your account and start your journey.
+        </p>
+        <p className="text-sm text-muted-foreground">
+          Didn't receive the email? Check your spam folder or{" "}
+          <button onClick={() => setSuccess(false)} className="text-primary hover:underline">
+            try again
+          </button>
+        </p>
+      </div>
+    );
   }
 
   return (
