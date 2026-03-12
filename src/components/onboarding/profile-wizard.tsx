@@ -200,6 +200,7 @@ export function ProfileWizard() {
 
   // Save draft to the database
   const handleSaveDraft = async () => {
+    if (isSaving) return;
     setIsSaving(true);
     try {
       const updatePayload: Record<string, unknown> = {};
@@ -234,6 +235,7 @@ export function ProfileWizard() {
   };
 
   const handleSubmit = async () => {
+    if (isSaving) return;
     setIsSaving(true);
     try {
       // Save all data first
@@ -398,7 +400,15 @@ export function ProfileWizard() {
       case 9:
         return <StepVerification defaultValues={profileData.verification} onNext={handleVerification} onBack={goToPrevStep} />;
       case 10:
-        return <StepReview profileData={profileData} onEdit={goToStep} onSubmit={handleSubmit} onBack={goToPrevStep} />;
+        return (
+          <StepReview
+            profileData={profileData}
+            onEdit={goToStep}
+            onSubmit={handleSubmit}
+            onBack={goToPrevStep}
+            isSubmitting={isSaving}
+          />
+        );
       default:
         return null;
     }
