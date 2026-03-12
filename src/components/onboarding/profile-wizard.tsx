@@ -208,11 +208,15 @@ export function ProfileWizard() {
     goToNextStep();
   };
 
-  const dataUrlToFile = (dataUrl: string, filename: string): File => {
+  const dataUrlToFile = (dataUrl: unknown, filename: string): File => {
+    if (typeof dataUrl !== "string") {
+      throw new Error("Invalid file data");
+    }
+
     const [header, base64] = dataUrl.split(",");
 
     if (!header || !base64) {
-      throw new Error("Invalid image data");
+      throw new Error("Invalid file data");
     }
 
     const mime = header.match(/:(.*?);/)?.[1] || "image/jpeg";
@@ -236,8 +240,11 @@ export function ProfileWizard() {
     }
     if (data.additionalPhotos) {
       for (let i = 0; i < data.additionalPhotos.length; i++) {
+        const photoData = data.additionalPhotos[i];
+        if (typeof photoData !== "string") continue;
+
         try {
-          const file = dataUrlToFile(data.additionalPhotos[i], `additional-${i}.jpg`);
+          const file = dataUrlToFile(photoData, `additional-${i}.jpg`);
           await uploadPhoto(file);
         } catch {
           // Continue uploading remaining photos
@@ -249,15 +256,23 @@ export function ProfileWizard() {
 
   const handleVerification = async (data: VerificationValues) => {
     updateProfileData("verification", data);
+
+    const apiDocumentType = data.documentType === "national-id" ? "nid" : data.documentType;
+
     if (data.documentImage) {
       try {
         const file = dataUrlToFile(data.documentImage, "verification-doc.jpg");
-        await uploadDocument(file, data.documentType || "nid");
+        await uploadDocument(file, apiDocumentType);
         toast.success("Document uploaded!");
-      } catch {
-        toast.error("Failed to upload document");
+        goToNextStep();
+        return;
+      } catch (err: unknown) {
+        const message = err instanceof Error ? err.message : "Failed to upload document";
+        toast.error(message);
+        return;
       }
     }
+
     goToNextStep();
   };
 

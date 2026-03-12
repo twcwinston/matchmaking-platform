@@ -16,6 +16,7 @@ import {
   FormDescription,
 } from "@/components/ui/form";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 const verificationSchema = z.object({
   documentType: z.enum(["national-id", "passport"], {
@@ -30,6 +31,28 @@ interface StepVerificationProps {
   defaultValues?: Partial<VerificationValues>;
   onNext: (data: VerificationValues) => void;
   onBack: () => void;
+}
+
+const ALLOWED_DOC_TYPES = ["image/jpeg", "image/png", "image/webp", "application/pdf"];
+const MAX_DOC_SIZE_MB = 10;
+const MAX_DOC_SIZE_BYTES = MAX_DOC_SIZE_MB * 1024 * 1024;
+
+function validateDocumentFile(file: File): boolean {
+  if (!ALLOWED_DOC_TYPES.includes(file.type)) {
+    toast.error("Unsupported document format", {
+      description: "Please upload JPG, PNG, WebP, or PDF.",
+    });
+    return false;
+  }
+
+  if (file.size > MAX_DOC_SIZE_BYTES) {
+    toast.error("Document too large", {
+      description: `Please upload a document under ${MAX_DOC_SIZE_MB}MB.`,
+    });
+    return false;
+  }
+
+  return true;
 }
 
 export function StepVerification({ defaultValues, onNext, onBack }: StepVerificationProps) {
@@ -47,15 +70,15 @@ export function StepVerification({ defaultValues, onNext, onBack }: StepVerifica
   const documentType = form.watch("documentType");
 
   const handleDocument = useCallback((file: File) => {
-    if (file && (file.type.startsWith("image/") || file.type === "application/pdf")) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const result = reader.result as string;
-        setDocumentPreview(result);
-        form.setValue("documentImage", result, { shouldValidate: true });
-      };
-      reader.readAsDataURL(file);
-    }
+    if (!file || !validateDocumentFile(file)) return;
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const result = reader.result as string;
+      setDocumentPreview(result);
+      form.setValue("documentImage", result, { shouldValidate: true });
+    };
+    reader.readAsDataURL(file);
   }, [form]);
 
   const removeDocument = () => {
@@ -238,7 +261,7 @@ export function StepVerification({ defaultValues, onNext, onBack }: StepVerifica
                     </span>
                     <input
                       type="file"
-                      accept="image/*,.pdf"
+                      accept="image/jpeg,image/png,image/webp,application/pdf"
                       className="hidden"
                       onChange={(e) => {
                         const file = e.target.files?.[0];
