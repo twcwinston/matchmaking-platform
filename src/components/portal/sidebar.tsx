@@ -40,7 +40,8 @@ export function Sidebar({ className }: SidebarProps) {
   const { user, signOut } = useAuth();
   const { profile } = useProfile();
 
-  const userName = profile?.basic_info?.name || user?.user_metadata?.name || "User";
+  const rawUserName = profile?.basic_info?.name ?? user?.user_metadata?.name;
+  const userName = typeof rawUserName === "string" && rawUserName.trim() ? rawUserName : "User";
   const photoUrl = profile?.photos?.[0] || null;
   const isVerified = profile?.verification_status === "verified";
 
@@ -180,8 +181,9 @@ export function TopBar({ className }: TopBarProps) {
   const { user } = useAuth();
   const { profile } = useProfile();
 
-  const userName = profile?.basic_info?.name || user?.user_metadata?.name || "User";
-  const firstName = userName.split(" ")[0];
+  const rawUserName = profile?.basic_info?.name ?? user?.user_metadata?.name;
+  const userName = typeof rawUserName === "string" && rawUserName.trim() ? rawUserName : "User";
+  const firstName = userName.split(" ")[0] || "User";
   const photoUrl = profile?.photos?.[0] || null;
 
   return (
