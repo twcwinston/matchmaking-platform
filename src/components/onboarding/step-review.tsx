@@ -52,6 +52,7 @@ interface StepReviewProps {
   onSubmit: () => Promise<void> | void;
   onBack: () => void;
   isSubmitting?: boolean;
+  submitError?: string | null;
 }
 
 function ReviewSection({
@@ -98,7 +99,7 @@ function InfoRow({ label, value }: { label: string; value: string | React.ReactN
   );
 }
 
-export function StepReview({ profileData, onEdit, onSubmit, onBack, isSubmitting = false }: StepReviewProps) {
+export function StepReview({ profileData, onEdit, onSubmit, onBack, isSubmitting = false, submitError = null }: StepReviewProps) {
   const submitLockRef = useRef(false);
 
   const preferencesAgeRange =
@@ -368,6 +369,12 @@ export function StepReview({ profileData, onEdit, onSubmit, onBack, isSubmitting
           </div>
         </div>
       </div>
+
+      {submitError && (
+        <div className="rounded-[10px] border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {submitError}
+        </div>
+      )}
 
       {/* Navigation Buttons */}
       <div className="flex gap-4 pt-4">
