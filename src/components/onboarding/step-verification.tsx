@@ -221,12 +221,20 @@ export function StepVerification({ defaultValues, onNext, onBack }: StepVerifica
 
                 {documentPreview ? (
                   <div className="relative max-w-sm mx-auto">
-                    <div className="aspect-[3/2] rounded-[12px] border-2 border-gold overflow-hidden bg-white">
-                      <img
-                        src={documentPreview}
-                        alt="Document preview"
-                        className="w-full h-full object-contain"
-                      />
+                    <div className="aspect-[3/2] rounded-[12px] border-2 border-gold overflow-hidden bg-white flex items-center justify-center">
+                      {documentPreview.startsWith("data:application/pdf") ? (
+                        <div className="text-center px-4">
+                          <FileCheck className="w-10 h-10 text-burgundy mx-auto mb-2" />
+                          <p className="text-sm text-dark font-medium">PDF selected</p>
+                          <p className="text-xs text-warm-gray">Document ready for upload</p>
+                        </div>
+                      ) : (
+                        <img
+                          src={documentPreview}
+                          alt="Document preview"
+                          className="w-full h-full object-contain"
+                        />
+                      )}
                     </div>
                     <button
                       type="button"
