@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef } from "react";
 import { 
   CheckCircle, 
   ChevronLeft, 
@@ -49,8 +49,9 @@ interface ProfileData {
 interface StepReviewProps {
   profileData: ProfileData;
   onEdit: (step: number) => void;
-  onSubmit: () => void;
+  onSubmit: () => Promise<void> | void;
   onBack: () => void;
+  isSubmitting?: boolean;
 }
 
 function ReviewSection({
@@ -97,14 +98,21 @@ function InfoRow({ label, value }: { label: string; value: string | React.ReactN
   );
 }
 
-export function StepReview({ profileData, onEdit, onSubmit, onBack }: StepReviewProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+export function StepReview({ profileData, onEdit, onSubmit, onBack, isSubmitting = false }: StepReviewProps) {
+  const submitLockRef = useRef(false);
 
   const handleSubmit = async () => {
-    setIsSubmitting(true);
-    // Simulate submission
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    onSubmit();
+    if (isSubmitting || submitLockRef.current) return;
+
+    submitLockRef.current = true;
+    try {
+      await onSubmit();
+    } finally {
+      // Keep a tiny delay to absorb accidental rapid re-clicks
+      setTimeout(() => {
+        submitLockRef.current = false;
+      }, 400);
+    }
   };
 
   const formatLabel = (value: string) => {
