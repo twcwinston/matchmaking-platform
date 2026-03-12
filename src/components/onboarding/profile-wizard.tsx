@@ -140,11 +140,12 @@ function mapPreferences(data: PreferencesValues) {
 
 export function ProfileWizard() {
   const router = useRouter();
-  const { profile, updateProfile, uploadPhoto, uploadDocument, submitProfile } = useProfile();
+  const { profile, mutate, updateProfile, uploadPhoto, uploadDocument, submitProfile } = useProfile();
   const [currentStep, setCurrentStep] = useState(1);
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
   const [profileData, setProfileData] = useState<ProfileData>({});
   const [isSaving, setIsSaving] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   // Pre-fill from existing profile data
   useEffect(() => {
@@ -309,13 +310,12 @@ export function ProfileWizard() {
   const handleSubmit = async () => {
     if (isSaving) return;
 
-    if (!profileData.basicInfo?.fullName || !profileData.basicInfo?.gender) {
-      toast.error("Please complete basic information before submitting");
-      return;
-    }
+    setSubmitError(null);
 
-    if (!profileData.photos?.primaryPhoto) {
-      toast.error("Please upload at least one photo before submitting");
+    if (!profileData.basicInfo?.fullName || !profileData.basicInfo?.gender) {
+      const msg = "Please complete basic information before submitting";
+      setSubmitError(msg);
+      toast.error(msg);
       return;
     }
 
@@ -335,6 +335,14 @@ export function ProfileWizard() {
         await updateProfile(updatePayload);
       }
 
+      // Ensure latest server state before submit
+      const refreshed = await mutate();
+      const serverProfile = refreshed?.profile;
+      const serverPhotos = Array.isArray(serverProfile?.photos) ? serverProfile.photos : [];
+      if (serverPhotos.length === 0) {
+        throw new Error("Please upload at least one photo before submitting");
+      }
+
       // Submit the profile
       await submitProfile();
 
@@ -345,6 +353,7 @@ export function ProfileWizard() {
       router.push("/payment");
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "Failed to submit profile";
+      setSubmitError(message);
       toast.error(message);
     } finally {
       setIsSaving(false);
@@ -414,16 +423,22 @@ export function ProfileWizard() {
 
   const handlePhotos = async (data: PhotosValues) => {
     updateProfileData("photos", data);
-    if (data.primaryPhoto) {
-      try {
-        const file = dataUrlToFile(data.primaryPhoto, "primary.jpg");
-        await uploadPhoto(file);
-        toast.success("Photo uploaded!");
-      } catch (err: unknown) {
-        const message = err instanceof Error ? err.message : "Failed to upload photo";
-        toast.error(message);
-      }
+
+    if (!data.primaryPhoto) {
+      toast.error("Please add a primary photo to continue");
+      return;
     }
+
+    try {
+      const primaryFile = dataUrlToFile(data.primaryPhoto, "primary.jpg");
+      await uploadPhoto(primaryFile);
+      toast.success("Photo uploaded!");
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Failed to upload photo";
+      toast.error(message);
+      return;
+    }
+
     if (data.additionalPhotos) {
       for (let i = 0; i < data.additionalPhotos.length; i++) {
         const photoData = data.additionalPhotos[i];
@@ -437,6 +452,9 @@ export function ProfileWizard() {
         }
       }
     }
+
+    // Cool-off moment to reduce rapid follow-up calls
+    await new Promise((resolve) => setTimeout(resolve, 250));
     goToNextStep();
   };
 
@@ -490,6 +508,7 @@ export function ProfileWizard() {
             onSubmit={handleSubmit}
             onBack={goToPrevStep}
             isSubmitting={isSaving}
+            submitError={submitError}
           />
         );
       default:
